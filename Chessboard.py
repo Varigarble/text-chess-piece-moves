@@ -5,14 +5,19 @@ import string
 TODO: try/except for ValueError for invalid input; 
 '''
 
-piece = input("State your piece: ")
+def piece_name_input():
+    while True:
+        try:
+            piece = str(input("State your piece: "))
+        except TypeError:
+            raise TypeError("I know you're new to chess, but at least try to enter a word made of letters.")
+        else:
+            break
+    p: str = piece.upper()
 
-p = piece.upper()
-
-
-def piece_name_display():
     if p[0] not in {"P", "R", "N", "KN", "H", "K", "KI", "B", "Q"}:
-        raise ValueError
+        raise ValueError("The chess pieces are: King, Queen, Bishop, Knight, Rook, and Pawn.")
+
 
     if p[0] == "P":
         print("Your piece is a pawn")
@@ -34,14 +39,15 @@ def piece_name_display():
 
     if p[0] == "Q":
         print("Your piece is a queen")
+    return p
 
 
-piece_name_display()
-
-color = input("State your color: ").upper()
+piece_name_input()
 
 
-def piece_color_display():
+def piece_color_input():
+    color: str = input("State your color: ").upper()
+
     if color[0] == "B":
         print("Your piece is black")
 
@@ -49,7 +55,7 @@ def piece_color_display():
         print("Your piece is white")
 
 
-piece_color_display()
+piece_color_input()
 
 
 def locator():
