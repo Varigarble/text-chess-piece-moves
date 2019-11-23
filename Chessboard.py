@@ -6,41 +6,38 @@ TODO: try/except for ValueError for invalid input;
 '''
 
 def piece_name_input():
-    while True:
+    #  Get valid chess piece from user
+    valid_pieces = ['B', 'Bishop', 'H', 'Horse', 'KI', 'King', 'KN', 'Knight', 'N', 'Knight', 'P', 'Pawn',
+                    'Q', 'Queen', 'R', 'Rook']
+    piece_entered = False
+    while piece_entered == False:
         try:
-            piece = str(input("State your piece: "))
+            piece = input("State your piece: ")
+            if not piece.isalpha():
+                raise TypeError("requires letters only")
+            if piece.upper()[0] not in valid_pieces:
+                raise ValueError("not a real piece")
         except TypeError:
-            raise TypeError("I know you're new to chess, but at least try to enter a word made of letters.")
+            print("Piece names only use letters.")
+            piece_entered = False
+        except ValueError:
+            print("The chess pieces are: King, Queen, Bishop, Knight, Rook, and Pawn.")
+            piece_entered = False
         else:
-            break
+            if piece.isalpha() and (piece.upper()[0] in valid_pieces):
+                piece_entered = True
+
     p: str = piece.upper()
 
-    if p[0] not in {"P", "R", "N", "KN", "H", "K", "KI", "B", "Q"}:
-        raise ValueError("The chess pieces are: King, Queen, Bishop, Knight, Rook, and Pawn.")
+    #  Display valid entry
+    for entry in valid_pieces:
+        if p[0] == "H":
+            print("Your piece is a kNight, NOT a horse")
 
+        elif p[0] == entry:
+            print(f"Your piece is a {valid_pieces[valid_pieces.index(entry)+1]}.")
 
-    if p[0] == "P":
-        print("Your piece is a pawn")
-
-    if p[0] == "R":
-        print("Your piece is a rook")
-
-    if p[0] == "N" or p[:1] == "KN":
-        print("Your piece is a knight")
-
-    if p[0] == "H":
-        print("Your piece is a knight, NOT a horse")
-
-    if p[0] == "K" or p[:1] == "KI":
-        print("Your piece is a king")
-
-    if p[0] == "B":
-        print("Your piece is a bishop")
-
-    if p[0] == "Q":
-        print("Your piece is a queen")
     return p
-
 
 piece_name_input()
 
@@ -69,6 +66,7 @@ def locator():
 
 locator()
 
+position = locator()
 reset_position = position
 # sample board inputs from piece function outputs:
 attacked = {1, 34, 35, 36, 37, 38, 39, 40, 9, 41, 17, 49, 25, 57}

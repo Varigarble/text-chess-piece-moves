@@ -1,11 +1,9 @@
-''' This is a library of standard chess pieces and functions showing the possible moves of each.'''
+""" This is a library of standard chess pieces and functions showing the possible moves of each."""
 
-
-''' Piece function section '''
-
+"""Piece function section"""
+#  Todo: get piece as input From Chessboard.py to call proper function
 
 def white_pawn():
-    # TODO: check for valid inputs, rewrite to absolute cell values
     global position
 
     attacked = {None}
@@ -34,7 +32,7 @@ def white_pawn():
 # print(capture)
 
 def black_pawn():
-    # TODO: check for valid inputs, rewrite to absolute cell values
+
     global position
 
     attacked = {None}
@@ -63,7 +61,7 @@ def black_pawn():
 # print(capture)
 
 def rook():
-    # TODO: check for valid inputs; see if advantage to lists instead of sets; combine row, col?
+
     global position
 
     attacked = {None}
