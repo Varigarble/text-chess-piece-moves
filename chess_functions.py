@@ -1,7 +1,7 @@
 """ This is a library of standard chess pieces and functions showing the possible moves of each."""
 
-def white_pawn():
-    global position
+
+def white_pawn(position):
 
     attacked = {None}
     capture = {None}
@@ -15,23 +15,22 @@ def white_pawn():
         print("Pawns can't be there")
         return invalid
     if (8 < position < 57):
-        attacked.add(position + 1)
+        attacked.add(position + 8)
         if ((position + 7) % 8) != 0:
             capture.add(position + 7)
         if ((position + 8) % 8) != 0:
-            capture.add(position + 9)
+            capture.add(position + 16)
     if (8 < position < 17):
-        attacked.add(position + 2)
+        attacked.add(position + 16)
 
-    return attacked, capture
+    return attacked # , capture
+
 
 # attacked, capture = white_pawn()
 # print(attacked)
 # print(capture)
 
-def black_pawn():
-
-    global position
+def black_pawn(position):
 
     attacked = {None}
     capture = {None}
@@ -45,24 +44,23 @@ def black_pawn():
         print("Pawns can't be there")
         return invalid
     if (8 < position < 57):
-        attacked.add(position - 1)
+        attacked.add(position - 8)
         if ((position - 8) % 8) != 0:
             capture.add(position - 7)
         if ((position - 9) % 8) != 0:
             capture.add(position - 9)
     if (48 < position < 57):
-        attacked.add(position - 2)
+        attacked.add(position - 16)
 
-    return attacked, capture
+    return attacked #, capture
+
 
 # attacked, capture = black_pawn()
 # print(attacked)
 # print(capture)
 
-def rook():
-
-    global position
-
+def rook(position):
+    reset_position = position
     attacked = {None}
     # row
     while (position > 1) and (position - 1) % 8 != 0:
@@ -86,10 +84,9 @@ def rook():
     position = reset_position
     return attacked
 
-def bishop():
-    # TODO: check for valid inputs; see if advantage to lists instead of sets; combine row, col?
-    global position
 
+def bishop(position):
+    reset_position = position
     attacked = {None}
 
     # ll to ur diagonal
@@ -117,12 +114,14 @@ def bishop():
     position = reset_position
     return attacked
 
-def queen():
-    attacked = rook() | bishop()
+
+def queen(position):
+    attacked = rook(position) | bishop(position)
     return attacked
 
+
 def knight(position):
-    position
+
     reset_position = position
     attacked = {None}
 
@@ -164,17 +163,35 @@ def knight(position):
 
     return attacked
 
-def white_king():
-    global position
+
+def king(position, color):
     attacked = {None}
-
-    if position == 61:
+    # top row
+    if ((position + 7) < 64) and (((position + 7) % 8) != 0):
+        attacked.add(position + 7)
+    if (position + 8) < 65:
+        attacked.add(position + 8)
+    if ((position % 8) != 0) and (position < 56):
+        attacked.add(position + 9)
+    # left/right
+    if (((position - 1) % 8) != 0) and (position > 1):
+        attacked.add(position - 1)
+    if ((position % 8) != 0) and (position < 64):
+        attacked.add(position + 1)
+    # bottom row
+    if (((position - 9) % 8) != 0) and ((position - 9) > 0):
+        attacked.add(position - 9)
+    if (position - 8) > 0:
+        attacked.add(position - 8)
+    if ((position % 8) != 0) and (position > 9):
+        attacked.add(position - 7)
+    # castle
+    if (position == 61) and (color == 'B'):
         attacked.add(63)
-    # upper row
-    for x in range(position + 7, position + 9):
-        if (position < 57) and (((position + 7) % 8) != 0) and (((position + 7) % 8) != 0):
-            attacked.add(x)
-
+        attacked.add(59)
+    if (position == 5) and (color == 'W'):
+        attacked.add(7)
+        attacked.add(3)
     return attacked
 
 

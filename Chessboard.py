@@ -57,9 +57,11 @@ def piece_color_input():
 
     if color[0] == "B":
         print("Your piece is black")
-
+        color = 'B'
     if color[0] == "W":
         print("Your piece is white")
+        color = 'W'
+    return color
 
 color = piece_color_input()
 
@@ -74,18 +76,22 @@ def locator():
 
 
 position = locator()
-reset_position = position
 
-#  get piece functions from "chess_functions" here:
+#  summon piece functions from "chess_functions" here:
 if piece == 'N':
     attacked = chess_functions.knight(position)
-
-# sample board inputs from piece function outputs:
-# attacked = {1, 34, 35, 36, 37, 38, 39, 40, 9, 41, 17, 49, 25, 57}
-# capture = {9, 11}
-# raw_piece = "rook"
-# piece = raw_piece[0].upper()
-# position = 33
+if piece == 'B':
+    attacked = chess_functions.bishop(position)
+if piece == 'R':
+    attacked = chess_functions.rook(position)
+if piece == 'Q':
+    attacked = chess_functions.queen(position)
+if piece == 'K':
+    attacked = chess_functions.king(position, color)
+if piece == 'P' and color == 'B':
+    attacked = chess_functions.black_pawn(position)
+if piece == 'P' and color == 'W':
+    attacked = chess_functions.white_pawn(position)
 
 # draw board using array contents
 row = 8
