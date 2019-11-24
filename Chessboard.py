@@ -1,10 +1,10 @@
 import string
+import chess_functions
 # https://stackoverflow.com/questions/16060899/alphabet-range-on-python
 ''' Chessboard is absolute positions of 1-64'''
 
 def piece_name_input():
     #  Get valid chess piece from user
-    # TODO: convert piece entry to standard initial in valid_pieces
     valid_pieces = ['B', 'Bishop', 'H', 'Horse', 'KI', 'King', 'KN', 'Knight', 'N', 'Knight', 'P', 'Pawn',
                     'Q', 'Queen', 'R', 'Rook']
     piece_entered = False
@@ -43,15 +43,16 @@ def piece_name_input():
         piece = 'N'
     elif p[0] in valid_pieces:
         print(f"Your piece is a {valid_pieces[valid_pieces.index(p[0])+1]}.")
+        piece = piece.upper()[0]
 
     return piece
 
 
 piece = piece_name_input()
-
-print(piece) #  Will need to be a standard initial in valid_pieces
+print("Here's the initial: ", piece)  # Confirming that the user input has been converted to a capital initial
 
 def piece_color_input():
+    # TODO: add color input validation
     color: str = input("State your color: ").upper()
 
     if color[0] == "B":
@@ -60,7 +61,7 @@ def piece_color_input():
     if color[0] == "W":
         print("Your piece is white")
 
-piece_color_input()
+color = piece_color_input()
 
 
 def locator():
@@ -72,16 +73,19 @@ def locator():
     return position
 
 
-locator()
-
 position = locator()
 reset_position = position
+
+#  get piece functions from "chess_functions" here:
+if piece == 'N':
+    attacked = chess_functions.knight(position)
+
 # sample board inputs from piece function outputs:
-attacked = {1, 34, 35, 36, 37, 38, 39, 40, 9, 41, 17, 49, 25, 57}
-capture = {9, 11}
-raw_piece = "rook"
-piece = raw_piece[0].upper()
-position = 33
+# attacked = {1, 34, 35, 36, 37, 38, 39, 40, 9, 41, 17, 49, 25, 57}
+# capture = {9, 11}
+# raw_piece = "rook"
+# piece = raw_piece[0].upper()
+# position = 33
 
 # draw board using array contents
 row = 8

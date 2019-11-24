@@ -1,15 +1,12 @@
 """ This is a library of standard chess pieces and functions showing the possible moves of each."""
 
-"""Piece function section"""
-#  Todo: get piece as input From Chessboard.py to call proper function
-
 def white_pawn():
     global position
 
     attacked = {None}
     capture = {None}
-    promotion = None
-    invalid = None
+    promotion = None  # placeholder for some other possibility
+    invalid = None  # placeholder for some other possibility
 
     if (56 < position < 65):
         print("You must promote to a new queen, rook, bishop or knight")
@@ -27,6 +24,7 @@ def white_pawn():
         attacked.add(position + 2)
 
     return attacked, capture
+
 # attacked, capture = white_pawn()
 # print(attacked)
 # print(capture)
@@ -37,8 +35,8 @@ def black_pawn():
 
     attacked = {None}
     capture = {None}
-    promotion = None  # placeholder for some other possiblity
-    invalid = None  # placeholder for some other possiblity
+    promotion = None  # placeholder for some other possibility
+    invalid = None  # placeholder for some other possibility
 
     if (0 < position < 9):
         print("You must promote to a new queen, rook, bishop or knight")
@@ -56,7 +54,8 @@ def black_pawn():
         attacked.add(position - 2)
 
     return attacked, capture
-# attacked, capture = white_pawn()
+
+# attacked, capture = black_pawn()
 # print(attacked)
 # print(capture)
 
@@ -86,7 +85,6 @@ def rook():
         position += 8
     position = reset_position
     return attacked
-
 
 def bishop():
     # TODO: check for valid inputs; see if advantage to lists instead of sets; combine row, col?
@@ -119,14 +117,13 @@ def bishop():
     position = reset_position
     return attacked
 
-
 def queen():
     attacked = rook() | bishop()
     return attacked
 
-
-def knight():
-    global position
+def knight(position):
+    position
+    reset_position = position
     attacked = {None}
 
     # vertical up & left/right
@@ -178,5 +175,6 @@ def white_king():
         if (position < 57) and (((position + 7) % 8) != 0) and (((position + 7) % 8) != 0):
             attacked.add(x)
 
-
     return attacked
+
+
