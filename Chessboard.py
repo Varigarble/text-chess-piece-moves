@@ -1,12 +1,10 @@
 import string
 # https://stackoverflow.com/questions/16060899/alphabet-range-on-python
 ''' Chessboard is absolute positions of 1-64'''
-''' Piece input section 
-TODO: try/except for ValueError for invalid input; 
-'''
 
 def piece_name_input():
     #  Get valid chess piece from user
+    # TODO: convert piece entry to standard initial in valid_pieces
     valid_pieces = ['B', 'Bishop', 'H', 'Horse', 'KI', 'King', 'KN', 'Knight', 'N', 'Knight', 'P', 'Pawn',
                     'Q', 'Queen', 'R', 'Rook']
     piece_entered = False
@@ -15,7 +13,9 @@ def piece_name_input():
             piece = input("State your piece: ")
             if not piece.isalpha():
                 raise TypeError("requires letters only")
-            if piece.upper()[0] not in valid_pieces:
+            if piece.upper() == 'K':
+                raise Exception("ambiguous input")  # create a class CustomError(Exception) called KinghtError?
+            if (piece.upper()[0] not in valid_pieces) and (piece.upper()[:2] not in valid_pieces):
                 raise ValueError("not a real piece")
         except TypeError:
             print("Piece names only use letters.")
@@ -23,24 +23,33 @@ def piece_name_input():
         except ValueError:
             print("The chess pieces are: King, Queen, Bishop, Knight, Rook, and Pawn.")
             piece_entered = False
+        except Exception:
+            print("\"K\" what? Be more specific.")
         else:
-            if piece.isalpha() and (piece.upper()[0] in valid_pieces):
+            if piece.isalpha() and ((piece.upper()[0] in valid_pieces) or (piece.upper()[:2]) in valid_pieces):
                 piece_entered = True
 
+    #  Display valid entry
     p: str = piece.upper()
 
-    #  Display valid entry
-    for entry in valid_pieces:
-        if p[0] == "H":
-            print("Your piece is a kNight, NOT a horse")
+    if p[0] == "H":
+        print("Your piece is a kNight, NOT a horse")
+        piece = 'N'
+    elif p[:2] == 'KI':
+        print("Your piece is a king")
+        piece = 'K'
+    elif p[:2] == 'KN':
+        print("Your piece is a knight")
+        piece = 'N'
+    elif p[0] in valid_pieces:
+        print(f"Your piece is a {valid_pieces[valid_pieces.index(p[0])+1]}.")
 
-        elif p[0] == entry:
-            print(f"Your piece is a {valid_pieces[valid_pieces.index(entry)+1]}.")
+    return piece
 
-    return p
 
-piece_name_input()
+piece = piece_name_input()
 
+print(piece) #  Will need to be a standard initial in valid_pieces
 
 def piece_color_input():
     color: str = input("State your color: ").upper()
@@ -50,7 +59,6 @@ def piece_color_input():
 
     if color[0] == "W":
         print("Your piece is white")
-
 
 piece_color_input()
 
