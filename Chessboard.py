@@ -52,8 +52,25 @@ piece = piece_name_input()
 print("Here's the initial: ", piece)  # Confirming that the user input has been converted to a capital initial
 
 def piece_color_input():
-    # TODO: add color input validation
-    color: str = input("State your color: ").upper()
+    valid_in = False
+    while valid_in == False:
+        try:
+            color: str = input("State your color: ").upper()
+            if not color.isalpha():
+                raise TypeError("requires letters only")
+            if (color[0] != 'B') and (color[0] != 'W'):
+                raise ValueError("invalid color")
+        except TypeError:
+            print("Enter color names with only letters.")
+            valid_in = False
+        except ValueError:
+            print("Enter \"Black\" or \"White.\"")
+            valid_in = False
+        except Exception:
+            print("I'm not sure what's wrong.")
+        else:
+            if color.isalpha() and ((color[0] == 'B') or (color[0] == 'W')):
+                valid_in = True
 
     if color[0] == "B":
         print("Your piece is black")
