@@ -10,10 +10,10 @@ def white_pawn(position):
 
     if (56 < position < 65):
         print("You must promote to a new queen, rook, bishop or knight")
-        return promotion
+        # return promotion
     if (0 < position < 9):
         print("Pawns can't be there")
-        return invalid
+        # return invalid
     if (8 < position < 57):
         attacked.add(position + 8)
         if ((position + 7) % 8) != 0:
@@ -39,10 +39,10 @@ def black_pawn(position):
 
     if (0 < position < 9):
         print("You must promote to a new queen, rook, bishop or knight")
-        return promotion
+        # return promotion
     if (56 < position < 65):
         print("Pawns can't be there")
-        return invalid
+        # return invalid
     if (8 < position < 57):
         attacked.add(position - 8)
         if ((position - 8) % 8) != 0:
