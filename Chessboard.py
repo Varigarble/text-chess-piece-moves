@@ -1,10 +1,9 @@
 import string
 import chess_functions
-# https://stackoverflow.com/questions/16060899/alphabet-range-on-python
 ''' Chessboard is absolute positions of 1-64'''
 
 def piece_name_input():
-    #  Get valid chess piece from user
+    # Get valid chess piece from user
     valid_pieces = ['B', 'Bishop', 'H', 'Horse', 'KI', 'King', 'KN', 'Knight', 'N', 'Knight', 'P', 'Pawn',
                     'Q', 'Queen', 'R', 'Rook']
     piece_entered = False
@@ -49,9 +48,10 @@ def piece_name_input():
 
 
 piece = piece_name_input()
-print("Here's the initial: ", piece)  # Confirming that the user input has been converted to a capital initial
+print("Here's the chess notation: ", piece)  # Confirming that the user input has been converted to a capital initial
 
 def piece_color_input():
+    # Get valid color from user
     valid_in = False
     while valid_in == False:
         try:
