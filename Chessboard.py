@@ -85,8 +85,39 @@ color = piece_color_input()
 
 def locator():
     # gets chess notation input and converts to absolute cell values
-    row = int(input("State your row (1-8): "))
-    raw_column = input("State your column (A-H): ").upper()
+    valid_row = False
+    valid_col = False
+    while valid_row == False:
+        try:
+            row = int(input("State your row (1-8): "))
+            if type(row) != int:
+                raise TypeError("wrong input")
+            if not 0 < row < 9:
+                raise ValueError("off the grid")
+        except TypeError:
+            print("Enter the input indicated")
+            valid_row = False
+        except ValueError:
+            print("You have to be on the board to play")
+        else:
+            valid_row = True
+
+    while valid_col == False:
+        try:
+            raw_column = input("State your column (A-H): ").upper()
+            if not raw_column.isalpha():
+                raise TypeError("wrong input")
+            if raw_column not in string.ascii_uppercase[0:8]:
+                raise ValueError("off the grid")
+        except TypeError:
+            print("Enter the input indicated")
+            valid_col = False
+        except ValueError:
+            print("You have to be on the board to play")
+            valid_col = False
+        else:
+            valid_col = True
+
     column = (list(string.ascii_uppercase).index(raw_column)) + 1
     position = (row - 1) * 8 + column
     return position
