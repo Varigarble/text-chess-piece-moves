@@ -126,6 +126,8 @@ def locator():
 position = locator()
 
 #  summon piece functions from "chess_functions" here:
+if piece != 'P':
+    capture = {None}
 if piece == 'N':
     attacked = chess_functions.knight(position)
 if piece == 'B':

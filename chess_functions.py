@@ -5,15 +5,10 @@ def white_pawn(position):
 
     attacked = {None}
     capture = {None}
-    promotion = None  # placeholder for some other possibility
-    invalid = None  # placeholder for some other possibility
 
     if (56 < position < 65):
         print("You must promote to a new queen, rook, bishop or knight")
-        # return promotion
-    # if (0 < position < 9):
-    #     print("White pawns can't be there")
-        # return invalid
+
     if (8 < position < 57):
         attacked.add(position + 8)
         if ((position + 7) % 8) != 0:
@@ -26,23 +21,13 @@ def white_pawn(position):
     return attacked, capture
 
 
-# attacked, capture = white_pawn()
-# print(attacked)
-# print(capture)
-
 def black_pawn(position):
 
     attacked = {None}
     capture = {None}
-    promotion = None  # placeholder for some other possibility
-    invalid = None  # placeholder for some other possibility
 
     if (0 < position < 9):
         print("You must promote to a new queen, rook, bishop or knight")
-        # return promotion
-    # if (56 < position < 65):
-    #     print("Black pawns can't be there")
-        # return invalid
     if (8 < position < 57):
         attacked.add(position - 8)
         if ((position - 8) % 8) != 0:
@@ -55,14 +40,9 @@ def black_pawn(position):
     return attacked, capture
 
 
-# attacked, capture = black_pawn()
-# print(attacked)
-# print(capture)
-
 def rook(position):
     reset_position = position
     attacked = {None}
-    # row
     while (position > 1) and (position - 1) % 8 != 0:
         attacked.add(position - 1)
         position -= 1
@@ -71,9 +51,7 @@ def rook(position):
     while (position < 64) and (position % 8 != 0):
         attacked.add(position + 1)
         position += 1
-    # reset_position = position <- set at beginning
     position = reset_position
-    # column
     while ((position - 8) > 0) and (position > 8):
         attacked.add(position - 8)
         position -= 8
@@ -81,7 +59,6 @@ def rook(position):
     while (position + 8) < 65:
         attacked.add(position + 8)
         position += 8
-    position = reset_position
     return attacked
 
 
@@ -111,7 +88,6 @@ def bishop(position):
         if (position + 7) < 65:
             attacked.add(position + 7)
         position += 7
-    position = reset_position
     return attacked
 
 
@@ -159,7 +135,6 @@ def knight(position):
     position = reset_position
     if (((position - 16) % 8) != 0) and (position - 15 > 1):
         attacked.add(position - 15)
-    position = reset_position
 
     return attacked
 
@@ -193,5 +168,3 @@ def king(position, color):
         attacked.add(7)
         attacked.add(3)
     return attacked
-
-
