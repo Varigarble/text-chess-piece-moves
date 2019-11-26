@@ -137,9 +137,29 @@ if piece == 'Q':
 if piece == 'K':
     attacked = chess_functions.king(position, color)
 if piece == 'P' and color == 'B':
-    attacked = chess_functions.black_pawn(position)
+    if 8 < position < 57:
+        attacked = chess_functions.black_pawn(position)[0]
+        capture = chess_functions.black_pawn(position)[1]
+    elif position > 56:
+        print("Black pawns can't be on that row")
+        position = None
+        attacked = {None}
+        capture = {None}
+    else:
+        attacked = chess_functions.black_pawn(position)
+        capture = {None}
 if piece == 'P' and color == 'W':
-    attacked = chess_functions.white_pawn(position)
+    if 57 > position > 8:
+        attacked = chess_functions.white_pawn(position)[0]
+        capture = chess_functions.white_pawn(position)[1]
+    elif position < 9:
+        print("White pawns can't be on that row")
+        position = None
+        attacked = {None}
+        capture = {None}
+    else:
+        attacked = chess_functions.white_pawn(position)
+        capture = {None}
 
 # draw board using array contents
 row = 8
@@ -152,7 +172,7 @@ for all_squares in range(8, 0, -1):
     for square in range((8 * (row - 1) + 1), (8 * (row - 1) + 9)):
         if square == position:
             print(piece, "|", sep="", end="")
-        elif square not in attacked: # add not in capture?
+        elif (square not in attacked) and (square not in capture):
             print(" ", "|", sep="", end="")
         elif square in attacked:
             print("X", "|", sep="", end="")
@@ -166,4 +186,4 @@ for all_squares in range(8, 0, -1):
         print(" ", end="")
         for ltr in string.ascii_uppercase[0:8]:
             print("", ltr, end="")
-        print("\n")
+        #  print("\n")
