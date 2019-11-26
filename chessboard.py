@@ -1,6 +1,6 @@
 import string
 import chess_functions
-''' Chessboard is absolute positions of 1-64'''
+''' Chessboard is a grid of 1-64'''
 
 def piece_name_input():
     # Get valid chess piece from user
@@ -13,7 +13,7 @@ def piece_name_input():
             if not piece.isalpha():
                 raise TypeError("requires letters only")
             if piece.upper() == 'K':
-                raise Exception("ambiguous input")  # create a class CustomError(Exception) called KinghtError?
+                raise Exception("ambiguous input") #  KinghtError
             if (piece.upper()[0] not in valid_pieces) and (piece.upper()[:2] not in valid_pieces):
                 raise ValueError("not a real piece")
         except TypeError:
@@ -32,13 +32,13 @@ def piece_name_input():
     p: str = piece.upper()
 
     if p[0] == "H":
-        print("Your piece is a kNight, NOT a horse")
+        print("Your piece is a Knight, NOT a horse")
         piece = 'N'
     elif p[:2] == 'KI':
-        print("Your piece is a king")
+        print("Your piece is a King")
         piece = 'K'
     elif p[:2] == 'KN':
-        print("Your piece is a knight")
+        print("Your piece is a Knight")
         piece = 'N'
     elif p[0] in valid_pieces:
         print(f"Your piece is a {valid_pieces[valid_pieces.index(p[0])+1]}.")
@@ -48,7 +48,7 @@ def piece_name_input():
 
 
 piece = piece_name_input()
-print("Here's the chess notation: ", piece)  # Confirming that the user input has been converted to a capital initial
+print("Here's the chess notation: ", piece)
 
 def piece_color_input():
     # Get valid color from user
@@ -84,7 +84,7 @@ color = piece_color_input()
 
 
 def locator():
-    # gets chess notation input and converts to absolute cell values
+    # gets chess notation coordinate input and converts to cell values
     valid_row = False
     valid_col = False
     while valid_row == False:
@@ -161,14 +161,13 @@ if piece == 'P' and color == 'W':
         attacked = chess_functions.white_pawn(position)
         capture = {None}
 
-# draw board using array contents
+# draw board
 row = 8
 print("", " -" * 8)
 
 print(row, "|", sep="", end="")
 
 for all_squares in range(8, 0, -1):
-    # global row
     for square in range((8 * (row - 1) + 1), (8 * (row - 1) + 9)):
         if square == position:
             print(piece, "|", sep="", end="")
