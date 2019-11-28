@@ -1,10 +1,12 @@
 import string
 import chess_functions
-''' Chessboard is a grid of 1-64'''
+"""Chessboard is a grid of 1-64. Uncomment code below to print a grid as numpy array."""
+# import numpy as np
+# print(np.flip((np.arange(1, 65).reshape(8, 8)), 0))
 
 def piece_name_input():
     # Get valid chess piece from user
-    valid_pieces = ['B', 'Bishop', 'H', 'Horse', 'KI', 'King', 'KN', 'Knight', 'N', 'Knight', 'P', 'Pawn',
+    valid_pieces = ['B', 'Bishop', 'C', 'Castle', 'H', 'Horse', 'KI', 'King', 'KN', 'Knight', 'N', 'Knight', 'P', 'Pawn',
                     'Q', 'Queen', 'R', 'Rook']
     piece_entered = False
     while piece_entered == False:
@@ -13,7 +15,7 @@ def piece_name_input():
             if not piece.isalpha():
                 raise TypeError("requires letters only")
             if piece.upper() == 'K':
-                raise Exception("ambiguous input") #  KinghtError
+                raise Exception("ambiguous input")  # KinghtError
             if (piece.upper()[0] not in valid_pieces) and (piece.upper()[:2] not in valid_pieces):
                 raise ValueError("not a real piece")
         except TypeError:
@@ -34,6 +36,9 @@ def piece_name_input():
     if p[0] == "H":
         print("Your piece is a Knight, NOT a horse")
         piece = 'N'
+    if p[0] == "C":
+        print("Your piece is a Rook, a.k.a. a Castle")
+        piece = 'R'  # Thanks, April!
     elif p[:2] == 'KI':
         print("Your piece is a King")
         piece = 'K'
