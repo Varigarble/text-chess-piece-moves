@@ -15,7 +15,7 @@ def piece_name_input():
             if not piece.isalpha():
                 raise TypeError("requires letters only")
             if piece.upper() == 'K':
-                raise Exception("ambiguous input")  # KinghtError
+                raise Exception("ambiguous input")  # class KinghtError(ValueError):
             if (piece.upper()[0] not in valid_pieces) and (piece.upper()[:2] not in valid_pieces):
                 raise ValueError("not a real piece")
         except TypeError:
