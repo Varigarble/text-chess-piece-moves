@@ -94,10 +94,10 @@ def locator():
     valid_col = False
     while valid_row == False:
         try:
-            row = int(input("State your row (1-8): "))
-            if type(row) != int:
+            row = input("State your row (1-8): ")
+            if not row.isdigit():
                 raise TypeError("wrong input")
-            if not 0 < row < 9:
+            elif not 0 < int(row) < 9:
                 raise ValueError("off the grid")
         except TypeError:
             print("Enter the input indicated")
@@ -105,6 +105,7 @@ def locator():
         except ValueError:
             print("You have to be on the board to play")
         else:
+            row = int(row)
             valid_row = True
 
     while valid_col == False:
