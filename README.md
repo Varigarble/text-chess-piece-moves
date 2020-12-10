@@ -2,7 +2,7 @@
 Enter a chess piece and coordinate and this will "draw" a chessboard showing the location of the piece and the possible 
 squares it can move to.
 ___
-####Sample run:
+#### Sample run:
 
 State your piece: K
 
@@ -30,3 +30,4 @@ State your row (1-8): 6
 
 State your column (A-H): b
 
+![Knight on B6](https://github.com/Varigarble/text-chess-piece-moves/blob/master/BKB6_082648.JPG)
