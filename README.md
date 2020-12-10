@@ -30,4 +30,4 @@ State your row (1-8): 6
 
 State your column (A-H): b
 
-![Knight on B6](https://github.com/Varigarble/text-chess-piece-moves/blob/master/BKB6_082648.JPG)
+![Knight on B6](https://github.com/Varigarble/text-chess-piece-moves/blob/master/BNB6_082648.JPG)
