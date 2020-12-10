@@ -36,7 +36,7 @@ def piece_name_input():
     if p[0] == "H":
         print("Your piece is a Knight, NOT a horse")
         piece = 'N'
-    if p[0] == "C":
+    elif p[0] == "C":
         print("Your piece is a Rook, a.k.a. a Castle")
         piece = 'R'  # Thanks, April!
     elif p[:2] == 'KI':
