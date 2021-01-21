@@ -105,7 +105,7 @@ def knight(position):
     if (((position + 15) % 8) != 0) and (position + 15 < 64):
         attacked.add(position + 15)
     position = reset_position
-    if (((position + 16) % 8) != 0) and (position + 17 < 64):
+    if (((position + 16) % 8) != 0) and (position + 17 <= 64):
         attacked.add(position + 17)
     position = reset_position
 
